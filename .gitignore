@@ -4,6 +4,7 @@ __pycache__/
 *.so
 .Python
 env/
+.venv/
 venv/
 .env
 *.log
@@ -12,10 +13,12 @@ venv/
 htmlcov/
 .mypy_cache/
 .ruff_cache/
+*.pid
 
 # IDE
 .vscode/
 .idea/
 
 # Docker
-*.pid
+*.
+
