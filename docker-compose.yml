@@ -1,0 +1,66 @@
+
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: monitor_db
+    environment:
+      POSTGRES_USER: ${DB_USER:-monitor_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-monitor_password}
+      POSTGRES_DB: ${DB_NAME:-monitor_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-monitor_user} -d ${DB_NAME:-monitor_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - monitor_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: monitor_redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - monitor_network
+
+  app:
+    build: .
+    container_name: monitor_app
+    command: >
+      sh -c "poetry run alembic upgrade head &&
+             poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+    ports:
+      - "8000:8000"
+    env_file:
+      - backend/.env
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app  # Monta o código local para hot-reload
+    working_dir: /app
+    restart: unless-stopped
+    networks:
+      - monitor_network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  monitor_network:
+    driver: bridge
