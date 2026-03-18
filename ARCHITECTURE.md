@@ -69,5 +69,5 @@ Optei por PostgreSQL porque:
 ## Lições Aprendidas
 
 Durante a Sprint 0, enfrentamos desafios com a configuração do Alembic em ambiente assíncrono e a correta estruturação dos pacotes Python. A solução envolveu garantir a presença de arquivos `__init__.py` e ajustar o `env.py` para usar a URL do banco via variável de ambiente. Isso reforçou a importância de uma boa documentação interna.
-Durante a criação da imagem docker, também houve dificuldade com as dependencia do Alembic e a importação dos módulos, foi necessário análisar as importações que não estavam sendo encontradas.
+Durante a construção da imagem docker, também houve dificuldade com as dependencia do Alembic e a importação dos módulos, foi necessário análisar as importações que não estavam sendo encontradas.
 O que reforça a importancia de realizar as impletações na ordem correta.
