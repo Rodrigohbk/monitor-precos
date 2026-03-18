@@ -39,3 +39,6 @@ dev = [
 
 [tool.poetry.scripts]
 start = "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

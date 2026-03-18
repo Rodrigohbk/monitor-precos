@@ -1,5 +1,4 @@
-from pydantic_settings import BaseSettings
-from typing import Optional
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     # Configurações gerais da aplicação
@@ -14,11 +13,13 @@ class Settings(BaseSettings):
 
     # Banco de dados
     DATABASE_URL: str
-    REDIS_URL: Optional[str] = None  # Opcional para Celery
+    REDIS_URL: str | None = None
 
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
-        extra = "ignore"  # Ignora variáveis extras no .env
+    # Configurações do Pydantic (substitui a classe Config)
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        case_sensitive=True,
+        extra="ignore"
+    )
 
 settings = Settings()
