@@ -5,6 +5,7 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue?style=for-the-badge&logo=postgresql)
 ![Docker](https://img.shields.io/badge/Docker-24-blue?style=for-the-badge&logo=docker)
 ![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+![Visitors](https://api.visitorbadge.io/api/visitors?path=seu-usuario.monitor-precos&countColor=%23263759)
 
 > Acompanhe a evolução de preços de produtos em e-commerces com gráficos interativos e atualizações em tempo real. Ideal para analistas de mercado, pequenos vendedores e entusiastas de dados.
 
