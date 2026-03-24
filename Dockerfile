@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Instala o Poetry
 RUN pip install poetry
+RUN pip install pydantic[email]
 
 # Copia os arquivos de definição de dependências
 COPY backend/pyproject.toml backend/poetry.lock* /app/
