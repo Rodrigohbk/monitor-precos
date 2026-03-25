@@ -22,3 +22,12 @@ class ProductOut(BaseModel):
 
     class Config:
         from_attributes = True   # permite converter do modelo SQLAlchemy
+
+class PriceHistoryOut(BaseModel):
+    id: int
+    price: float
+    currency: str
+    collected_at: datetime
+
+    class Config:
+        from_attributes = True
