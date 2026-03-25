@@ -7,9 +7,11 @@ O sistema segue uma arquitetura baseada em microsserviços? Não, é uma aplica�
 
 ## Diagrama de Contexto
 ```markdown
-[Cliente] ↔ [API (FastAPI)] ↔ [Banco (PostgreSQL)]
-↕
-[Redis / Celery] (futuro para tarefas assíncronas)
+[Agendador] → [Orquestrador] → [Coletor Específico] → [Fonte Externa]
+                                  ↓
+                           [Preço / Produto]
+                                  ↓
+                           [Banco de Dados]
 ```
 ## Camadas
 
